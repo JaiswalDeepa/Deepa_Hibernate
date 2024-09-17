@@ -13,7 +13,7 @@ import com.hibernate.entity.Employee;
 public class Client {
 
 	public static void main(String[] args) {
-		Employee e = new Employee("Nimmi","Female",40000);
+		Employee e = new Employee(1,"Riya","Female",40000);
 //		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure().build();
 //		Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build(); 
 //		SessionFactory sf = meta.buildSessionFactory();
