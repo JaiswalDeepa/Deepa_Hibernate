@@ -18,22 +18,30 @@ public class Client {
 //		Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build(); 
 //		SessionFactory sf = meta.buildSessionFactory();
 	  
-		SessionFactory sf =  new MetadataSources(new StandardServiceRegistryBuilder().configure().build())
-				.getMetadataBuilder().build().buildSessionFactory();
+//		SessionFactory sf =  new MetadataSources(new StandardServiceRegistryBuilder().configure().build()).getMetadataBuilder().build().buildSessionFactory();
 		
 //		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		System.out.println("------------------------");
+		SessionFactory sf = HibernateUtill.getSessionFactory();
 		Session session1 = sf.openSession();
-		
-		private static void save(Session session) {
-		Transaction tx = session.beginTransaction();
-		Address address = new Address("GJB", "UP");
-		Employee e = new Employee("Deepak" , "Kumar", address);
-		session.persist(address);
-		session.persist(e);
-		tx.commit();
-		}
 		save(session1);
+		
+		
 		Employee em = session1.get(Employee.class, 1);
 		System.out.println(em);
+	}
+
+	private static void save(Session session) {
+		Transaction transaction = session.getTransaction();
+		transaction.begin();
+		Employee e = new Employee();
+		e.setFirstName("Kunal");
+		e.setLastName("sharma");
+		Address address = new Address("GZB", "UP");
+		e.setAddress(address);
+		session.persist(address);
+		session.persist(e);
+		transaction.commit();
+		
 	}
 }
