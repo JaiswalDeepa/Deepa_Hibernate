@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Address {
@@ -12,8 +14,12 @@ public class Address {
 	private int id;
 	private String street;
 	private String city;
-
+//	@Transient
 //	private String Country;
+	
+	@OneToOne(mappedBy = "address")
+	public Employee employee;
+	
 	public Address() {
 		super();
 
@@ -51,6 +57,14 @@ public class Address {
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", city=" + city + "]";
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+		
+	}
+	public Employee getEmployee(Employee employee) {
+		return employee;
 	}
 
 }

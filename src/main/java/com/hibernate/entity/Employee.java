@@ -1,10 +1,12 @@
 package com.hibernate.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -15,12 +17,14 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id ;
 	
-	@Column(name = "firs_tName")
+	@Column(name = "first_Name")
 	private String firstName;
 	
 	private String lastName;
 	
-	@OneToOne
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="addFK")
 	private Address address;
 
 	public Employee() {
@@ -68,8 +72,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
-				+ "]";
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 	
 	

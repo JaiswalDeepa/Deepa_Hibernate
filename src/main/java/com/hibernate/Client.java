@@ -27,8 +27,12 @@ public class Client {
 		save(session1);
 		
 		
-		Employee em = session1.get(Employee.class, 1);
-		System.out.println(em);
+//		Employee em = session1.get(Employee.class, 1);
+//		System.out.println(em);
+		
+//		Address add = session1.get(Address.class, 1);
+//		System.out.println(add);
+//		System.out.println(add.employee);
 	}
 
 	private static void save(Session session) {
@@ -39,7 +43,8 @@ public class Client {
 		e.setLastName("sharma");
 		Address address = new Address("GZB", "UP");
 		e.setAddress(address);
-		session.persist(address);
+//		address.setEmployee(e);
+//		session.persist(address);
 		session.persist(e);
 		transaction.commit();
 		
