@@ -1,5 +1,7 @@
 package com.hibernate.entity;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,34 +9,30 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "HCL_emp")
-public class Employee {
+public final class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id ;
-	
-	@Column(name = "first_Name")
-	private String firstName;
-	
-	private String lastName;
+	private String name;
+	private String gender;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="addFK")
-	private Address address;
+	@OneToMany
+	private List<Address> address;
 
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(String firstName, String lastName, Address address) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public Employee(String name, String gender, List<Address> address) {
+		this.name = name;
+		this.gender = gender;
 		this.address = address;
 	}
 
@@ -46,33 +44,33 @@ public class Employee {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String Name) {
+		this.name = Name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
-	public Address getAddress() {
+	public List<Address> getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(List<Address> address) {
 		this.address = address;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Employee [id=" + id + ", Name=" + name + ", Gender=" + gender +", Address="+ address + "]";
 	}
 	
 	

@@ -14,10 +14,6 @@ public class Address {
 	private int id;
 	private String street;
 	private String city;
-//	@Transient
-//	private String Country;
-	
-	@OneToOne(mappedBy = "address")
 	public Employee employee;
 	
 	public Address() {

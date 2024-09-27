@@ -1,4 +1,7 @@
 package com.hibernate;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -38,14 +41,30 @@ public class Client {
 	private static void save(Session session) {
 		Transaction transaction = session.getTransaction();
 		transaction.begin();
-		Employee e = new Employee();
-		e.setFirstName("Kunal");
-		e.setLastName("sharma");
-		Address address = new Address("GZB", "UP");
-		e.setAddress(address);
+		Employee e1 = new Employee();
+		e1.setName("Kunal");
+		e1.setGender("Male");
+		Address a1 = new Address("Sector62", "Noida");
+		Address a2 = new Address("Sector63", "Noida");
+		Address a3 = new Address("Sector64", "Noida");
+		Address a4 = new Address("Sector65", "Noida");
+		Address a5 = new Address("Sector66", "Noida");
+		session.persist(a1);
+		session.persist(a2);
+		session.persist(a3);
+		session.persist(a4);
+		session.persist(a5);
+		List<Address> ad = new ArrayList<> ();
+		ad.add(a1);
+		ad.add(a2);
+		ad.add(a3);
+		ad.add(a4);
+		ad.add(a5);
+		e1.setAddress(ad);
+		session.persist(e1);
 //		address.setEmployee(e);
 //		session.persist(address);
-		session.persist(e);
+//	    session.persist(e);
 		transaction.commit();
 		
 	}
