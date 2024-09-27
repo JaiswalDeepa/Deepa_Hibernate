@@ -8,56 +8,30 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 
 @Entity
 public final class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id ;
+	private int id;
 	private String name;
 	private String gender;
 	
+	@OneToMany(mappedBy = "employee")
+	List<Address> address;
 	
-	@OneToMany
-	private List<Address> address;
-
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(String name, String gender, List<Address> address) {
+	public Employee(String name, String gender, int id, List<Address> address) {
+		super();
 		this.name = name;
 		this.gender = gender;
-		this.address = address;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String Name) {
-		this.name = Name;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
+		this.address = address;
 	}
 
 	public List<Address> getAddress() {
@@ -68,12 +42,33 @@ public final class Employee {
 		this.address = address;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", Name=" + name + ", Gender=" + gender +", Address="+ address + "]";
+		return "Employee [name=" + name + ", gender=" + gender + ", id=" + id + "]";
 	}
-	
-	
-	
-	
+
 }
