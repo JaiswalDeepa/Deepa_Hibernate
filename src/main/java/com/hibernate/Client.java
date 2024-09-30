@@ -49,12 +49,17 @@ public class Client {
 		Address a3 = new Address("Sector64", "Noida");
 		Address a4 = new Address("Sector65", "Noida");
 		Address a5 = new Address("Sector66", "Noida");
+		a1.setEmployee(e1);
+		a2.setEmployee(e1);
+		a3.setEmployee(e1);
+		a4.setEmployee(e1);
+		a5.setEmployee(e1);
 		session.persist(a1);
 		session.persist(a2);
 		session.persist(a3);
 		session.persist(a4);
 		session.persist(a5);
-		List<Address> ad = new ArrayList<> ();
+		List<Address> ad = new ArrayList<>();
 		ad.add(a1);
 		ad.add(a2);
 		ad.add(a3);
